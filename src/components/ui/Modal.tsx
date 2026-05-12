@@ -14,42 +14,35 @@ interface ModalProps {
 export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose()
-      }
+      if (e.key === 'Escape') onClose()
     }
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
+    if (isOpen) document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
   }, [isOpen, onClose])
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop — fixed to viewport */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          >
-            {/* Modal Content */}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+          />
+
+          {/* Modal — always centered in viewport regardless of scroll */}
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              initial={{ opacity: 0, scale: 0.85, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ type: "spring", damping: 25, stiffness: 500 }}
+              exit={{ opacity: 0, scale: 0.85, y: 30 }}
+              transition={{ type: "spring", damping: 25, stiffness: 400 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-background/95 backdrop-blur-lg border border-border rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden glass glow"
+              className="relative bg-background/95 backdrop-blur-lg border border-border rounded-2xl shadow-2xl max-w-4xl w-full pointer-events-auto glass glow"
+              style={{ maxHeight: 'calc(100vh - 40px)' }}
             >
               {/* Header */}
               {title && (
@@ -66,12 +59,12 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
                 </div>
               )}
 
-              {/* Content */}
-              <div className="p-6 overflow-y-auto max-h-[70vh]">
+              {/* Content — scrollable inside modal only */}
+              <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 140px)' }}>
                 {children}
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
