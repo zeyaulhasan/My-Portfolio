@@ -38,14 +38,9 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
   useEffect(() => {
     if (!isOpen) { setClicked(false); return }
     
-    // Prevent body scroll when modal is open
-    document.body.style.overflow = 'hidden'
-    
     const t = setInterval(() => setRoastIdx(i => (i + 1) % roasts.length), 3000)
     return () => {
       clearInterval(t)
-      // Restore body scroll when modal closes
-      document.body.style.overflow = ''
     }
   }, [isOpen])
 

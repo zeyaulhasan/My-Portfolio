@@ -18,14 +18,10 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
     }
     
     if (isOpen) {
-      // Prevent scroll when modal opens
-      document.body.style.overflow = 'hidden'
       document.addEventListener('keydown', handleEscape)
     }
     
     return () => {
-      // Restore scroll when modal closes
-      document.body.style.overflow = ''
       document.removeEventListener('keydown', handleEscape)
     }
   }, [isOpen, onClose])
