@@ -58,13 +58,13 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
           />
 
           {/* Modal container */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none">
+          <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pointer-events-none overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.75, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.75, y: 30 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="relative w-full max-w-[520px] pointer-events-auto"
+              className="relative w-full max-w-[520px] pointer-events-auto mt-16 mb-8"
             >
               {/* Close btn */}
               <button
@@ -75,10 +75,10 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
               </button>
 
               {/* Card */}
-              <div className="rounded-2xl overflow-hidden border border-[#4FC3F7]/20 shadow-2xl shadow-[#4FC3F7]/10">
+              <div className="rounded-2xl overflow-hidden border border-[#4FC3F7]/20 shadow-2xl shadow-[#4FC3F7]/10 max-h-[90vh] overflow-y-auto">
 
                 {/* ── BANNER ── */}
-                <div className="relative bg-[#0a0a1a] px-8 pt-8 pb-5 text-center overflow-hidden">
+                <div className="relative bg-[#0a0a1a] px-8 pt-6 pb-4 text-center overflow-hidden">
                   {/* neon grid bg */}
                   <div className="absolute inset-0 opacity-10"
                     style={{
@@ -144,7 +144,7 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
                 </div>
 
                 {/* ── BODY ── */}
-                <div className="bg-[#0d0d1f] px-8 py-6 space-y-5">
+                <div className="bg-[#0d0d1f] px-8 py-4 space-y-4">
 
                   {/* fun stats */}
                   <div className="grid grid-cols-4 gap-3">
