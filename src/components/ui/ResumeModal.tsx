@@ -37,8 +37,16 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
 
   useEffect(() => {
     if (!isOpen) { setClicked(false); return }
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
+    
     const t = setInterval(() => setRoastIdx(i => (i + 1) % roasts.length), 3000)
-    return () => clearInterval(t)
+    return () => {
+      clearInterval(t)
+      // Restore body scroll when modal closes
+      document.body.style.overflow = ''
+    }
   }, [isOpen])
 
   return (
@@ -50,7 +58,11 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onClose()
+            }}
             className="fixed inset-0 z-[9998] bg-black/80 backdrop-blur-md"
           />
 
@@ -65,7 +77,11 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
             >
               {/* Close btn */}
               <button
-                onClick={onClose}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  onClose()
+                }}
                 className="absolute -top-3 -right-3 z-20 w-8 h-8 rounded-full bg-[#1a1a2e] border border-[#4FC3F7]/30 flex items-center justify-center text-slate-400 hover:text-white hover:border-[#4FC3F7] transition-all"
               >
                 <X className="w-4 h-4" />

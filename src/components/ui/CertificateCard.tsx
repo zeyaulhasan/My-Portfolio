@@ -21,7 +21,9 @@ interface CertificateCardProps {
 export const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     setIsModalOpen(true)
   }
 

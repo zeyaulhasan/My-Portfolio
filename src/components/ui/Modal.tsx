@@ -16,8 +16,18 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
-    if (isOpen) document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
+    
+    if (isOpen) {
+      // Prevent scroll when modal opens
+      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', handleEscape)
+    }
+    
+    return () => {
+      // Restore scroll when modal closes
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', handleEscape)
+    }
   }, [isOpen, onClose])
 
   return (
@@ -29,7 +39,11 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onClose()
+            }}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
           />
 
@@ -49,7 +63,11 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
                 <div className="flex items-center justify-between p-6 border-b border-border">
                   <h2 className="text-2xl font-bold text-foreground">{title}</h2>
                   <motion.button
-                    onClick={onClose}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      onClose()
+                    }}
                     className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
