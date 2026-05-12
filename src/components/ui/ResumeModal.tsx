@@ -41,16 +41,6 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
     return () => clearInterval(t)
   }, [isOpen])
 
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -61,17 +51,17 @@ export const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-[9998] bg-black/80 backdrop-blur-md"
           />
 
-          {/* Centered modal — never scrolls the page */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+          {/* Centered modal — always in center of viewport, no scroll needed */}
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative w-full max-w-[480px] pointer-events-auto"
+              className="relative w-full max-w-[480px] mx-4 pointer-events-auto"
             >
               {/* Close btn */}
               <button
