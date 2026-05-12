@@ -174,7 +174,7 @@ export const CERTIFICATES = [
     name: "OCI Generative Ai Professional",
     issuer: "Oracle University",
     date: "Sep 23, 2025",
-    image: "/images/OCI Generative Ai Professional.jpg",
+    image: "/images/oci-generative-ai-professional.jpg",
     verificationUrl: "#"
   },
   {
@@ -182,7 +182,7 @@ export const CERTIFICATES = [
     name: "OCI DevOps Professional",
     issuer: "Oracle University",
     date: "Sep 23, 2025",
-    image: "/images/OCI DevOps Professional.jpg",
+    image: "/images/oci-devops-professional.jpg",
     verificationUrl: "#"
   },
   {
@@ -190,7 +190,7 @@ export const CERTIFICATES = [
     name: "Cloud Computing",
     issuer: "NPTEL- IIT Kharagpur",
     date: "May 15, 2025",
-    image: "/images/Cloud Computing.jpg",
+    image: "/images/cloud-computing.jpg",
     verificationUrl: "#"
   },
   {
@@ -198,7 +198,7 @@ export const CERTIFICATES = [
     name: "Core & Advanced Java",
     issuer: "Board & infinity",
     date: "Jul 11, 2024",
-    image: "/images/Board & Infinity.jpg",
+    image: "/images/board-infinity.jpg",
     verificationUrl: "#"
   },
   {
@@ -206,7 +206,7 @@ export const CERTIFICATES = [
     name: "STC On Figma",
     issuer: "LPU",
     date: "Apr 11, 2025",
-    image: "/images/STC On Figma.jpg",
+    image: "/images/stc-on-figma.jpg",
     verificationUrl: "#"
   },
   {
@@ -214,7 +214,7 @@ export const CERTIFICATES = [
     name: "Cyber Job Simulation",
     issuer: "Deloitte",
     date: "June 24, 2025",
-    image: "/images/Cyber Job Simulation.jpg",
+    image: "/images/cyber-job-simulation.jpg",
     verificationUrl: "#"
   },
   {
@@ -222,7 +222,7 @@ export const CERTIFICATES = [
     name: "CompTIA Linux+ XKO-005",
     issuer: "CYBRARY",
     date: "May 10, 2024",
-    image: "/images/CompTIA Linux+ XKO-005.jpg",
+    image: "/images/comptia-linux-xko005.jpg",
     verificationUrl: "#"
   },
   {
@@ -230,7 +230,7 @@ export const CERTIFICATES = [
     name: "Full-Stack Web Developer",
     issuer: "LinkedIn",
     date: "Feb 20, 2023",
-    image: "/images/Full-Stack Web Developer.jpg",
+    image: "/images/full-stack-web-developer.jpg",
     verificationUrl: "#"
   }
 ]
